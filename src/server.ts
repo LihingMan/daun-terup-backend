@@ -3,6 +3,7 @@ process.on("uncaughtException", function (err) {
 });
 
 import dotenv from "dotenv";
+
 // * Local Environment
 if (process.env.NODE_ENV == "local") {
   dotenv.config({ debug: true });
@@ -17,9 +18,11 @@ import http from "http";
 import _ from "lodash";
 import app from "@src/app";
 import ServerConfig from "./config/server.config";
+import { initLogger } from "@src/helper/logger.helper";
 
 // initialise db connection
 // Database.init();
+const logger = initLogger("server-start");
 
 const serverPort = 16900;
 
@@ -27,6 +30,6 @@ const serverPort = 16900;
 // SocketRouter.init(serverPort);
 
 app.listen(serverPort, function () {
-  console.log(`Listening on port: ${serverPort}`);
-  console.log(`Environment: ${ServerConfig.nodeEnvironment()}`);
+  logger.info(`Listening on port: ${serverPort}`);
+  logger.info(`Environment: ${ServerConfig.nodeEnvironment()}`);
 });
