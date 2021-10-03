@@ -7,12 +7,19 @@ import _ from "lodash";
 import app from "@src/app";
 import ServerConfig from "./config/server.config";
 import { initLogger } from "@src/helper/logger.helper";
-import Database from "@src/database";
+import { sequelize } from "@src/models";
 
 const logger = initLogger("server-start");
 
 // initialise db connection
-Database.init();
+sequelize
+  .sync({ alter: true })
+  .then(() => {
+    logger.info("Connection established and synced tables to db");
+  })
+  .catch((err) => {
+    logger.error("Connection error to db", err);
+  });
 
 const serverPort = 16900;
 

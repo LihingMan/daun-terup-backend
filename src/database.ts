@@ -12,20 +12,13 @@ namespace Database {
 
   const dbDialect = "postgres";
 
-  export function init() {
+  export function initConnection() {
     const sequelize = new Sequelize(dbName, dbUsername, dbPassword, {
       host: dbHost,
       dialect: dbDialect,
     });
 
-    sequelize
-      .authenticate()
-      .then(() => {
-        logger.info("Connection has been established successfully.");
-      })
-      .catch((err) => {
-        logger.error("Unable to connect to the database:", err);
-      });
+    return sequelize;
   }
 }
 

@@ -19,6 +19,7 @@
     "@src": "built/"
   },
   "dependencies": {
+    "@types/body-parser": "^1.19.1",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
@@ -30,7 +31,9 @@
     "@types/node": "^16.9.1",
     "@types/pg": "^8.6.1",
     "@types/sequelize": "^4.28.10",
+    "@types/validator": "^13.6.3",
     "@types/winston": "^2.4.4",
+    "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
