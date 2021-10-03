@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- [node] v14.17.6
+- [node] v14.17.6 (NOTE: you should probably install Node Version Manager to handle the Node versions)
 - [pgAdmin] (any version should probably be alright)
 
 ## Running the server locally
