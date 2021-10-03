@@ -12,7 +12,7 @@
   "scripts": {
     "local": "NODE_ENV=local nodemon --trace-warnings --signal SIGTERM ./built/server.js",
     "local-windows": "set NODE_ENV=local&&nodemon --trace-warnings --signal SIGTERM ./built/server.js",
-    "dev": "REDIS_ENV=local nodemon --trace-warnings --signal SIGTERM ./built/server.js",
+    "dev": "nodemon --trace-warnings --signal SIGTERM ./built/server.js",
     "tsc-watch": "tsc -w"
   },
   "_moduleAliases": {
