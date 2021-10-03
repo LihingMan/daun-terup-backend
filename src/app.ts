@@ -11,7 +11,6 @@ if (process.env.NODE_ENV == "local") {
 import "module-alias/register";
 import createError from "http-errors";
 import express, { Request, Response } from "express";
-import path from "path";
 import cors from "cors";
 import http from "http";
 import _ from "lodash";
