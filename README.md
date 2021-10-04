@@ -21,7 +21,11 @@ In the root directory:
 
 4. Run the migrations for the database
 
-- do a `yarn prisma migrate dev` to perform migrations unto your local database
+- do `yarn prisma migrate dev` to perform migrations unto your local database
+- and then do `yarn prisma generate`
+- now you have to seed the database with the initial card values: `yarn prisma db seed`
+- NOTE: Whenever you make changes to your Prisma schema in the future, you manually need to invoke `yarn prisma generate` in order to accommodate the changes in your Prisma Client API.
+- ANOTHER-NOTE: If you botched the db at any point and need a fresh one do a `yarn prisma migrate reset` which will delete your db, reinitialize it and run the seed again. You'll lose all current data.
 
 5. Run the hot reload TypeScript compiler.
 
