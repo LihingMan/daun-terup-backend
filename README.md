@@ -3,6 +3,7 @@
 ## Prerequisites
 
 - [node] v14.17.6 (NOTE: you should probably install Node Version Manager to handle the Node versions)
+- [yarn] (probably any version)
 - [pgAdmin] (any version should probably be alright)
 
 ## Running the server locally
@@ -15,12 +16,12 @@ In the root directory:
 
 3. Create a .env file and have variables below:
 
-- DB_HOST=localhost
-- DB_NAME=your-db-name [e.g. daun-terup]
-- DB_USERNAME=your-db-username [e.g. postgres]
-- DB_PASSWORD=your-db-password [e.g. deeznuts123]
+- DATABASE_URL="postgresql://[DB-username]:[DB-password]@[DB-host]:[DB-port]/[DB-name]?schema=[DB-schema]"
+- e.g. `DATABASE_URL="postgresql://postgres:password123@localhost:5432/daun-terup?schema=public"`
 
-For your `DB_NAME`, `DB_USERNAME` AND `DB_PASSWORD`, you set these yourself on your local Postgres instance.
+4. Run the migrations for the database
+
+- do a `yarn prisma migrate dev` to perform migrations unto your local database
 
 5. Run the hot reload TypeScript compiler.
 

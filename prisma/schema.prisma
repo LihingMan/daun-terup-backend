@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Suit {
+  id   Int    @id
+  suit String @unique
+  card Card[]
+}
+
+model Rank {
+  id   Int    @id
+  rank String @unique
+  card Card[]
+}
+
+model Card {
+  id       Int        @id @default(autoincrement())
+  suitId   Int
+  rankId   Int
+  cardName String     @unique
+  suit     Suit       @relation(fields: [suitId], references: [id])
+  rank     Rank       @relation(fields: [rankId], references: [id])
+  cardDeck CardDeck[]
+}
+
+model CardDeck {
+  id     Int  @id @default(autoincrement())
+  cardId Int
+  deckId Int
+  card   Card @relation(fields: [cardId], references: [id])
+  deck   Deck @relation(fields: [deckId], references: [id])
+}
+
+model Deck {
+  id       Int        @id @default(autoincrement())
+  deckName String     @unique
+  cardDeck CardDeck[]
+}
