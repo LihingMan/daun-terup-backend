@@ -30,7 +30,6 @@
     "@types/lodash": "^4.14.173",
     "@types/node": "^16.9.1",
     "@types/pg": "^8.6.1",
-    "@types/sequelize": "^4.28.10",
     "@types/validator": "^13.6.3",
     "@types/winston": "^2.4.4",
     "body-parser": "^1.19.0",
@@ -46,7 +45,6 @@
     "module-alias": "^2.2.2",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.6.5",
     "ts-node": "^10.2.1",
     "tslib": "^2.3.1",
     "typescript": "^4.4.3",
@@ -54,7 +52,6 @@
   },
   "devDependencies": {
     "@types/nodemon": "^1.19.1",
-    "nodemon": "^2.0.12",
-    "sequelize-cli": "^6.2.0"
+    "nodemon": "^2.0.12"
   }
 }
