@@ -22,8 +22,18 @@ interface ICardDeck {
   deckId: number;
 }
 
+interface IGame {
+  gameName: string;
+  deckId: number;
+  minPlayers: number;
+  maxPlayers: number;
+  bigBlind?: number;
+  smallBlind?: number;
+}
+
 async function main() {
   await cardSetup();
+  await gameSetup();
 }
 
 async function cardSetup() {
@@ -98,6 +108,43 @@ async function cardSetup() {
 
   await prisma.cardDeck.createMany({
     data: cardDeck,
+  });
+}
+
+async function gameSetup() {
+  console.log("Creating the blackjack game");
+  const blackjack: IGame = {
+    gameName: "Blackjack",
+    deckId: 1,
+    minPlayers: 2,
+    maxPlayers: 7,
+  };
+  await prisma.game.create({
+    data: blackjack,
+  });
+
+  console.log("Creating the poker game");
+  const poker: IGame = {
+    gameName: "Poker",
+    deckId: 1,
+    minPlayers: 2,
+    maxPlayers: 10,
+    bigBlind: 2,
+    smallBlind: 1,
+  };
+  await prisma.game.create({
+    data: poker,
+  });
+
+  console.log("Creating the dai di game");
+  const daidi: IGame = {
+    gameName: "Dai-Di",
+    deckId: 1,
+    minPlayers: 4,
+    maxPlayers: 4,
+  };
+  await prisma.game.create({
+    data: daidi,
   });
 }
 

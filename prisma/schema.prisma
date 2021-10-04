@@ -44,4 +44,16 @@ model Deck {
   id       Int        @id @default(autoincrement())
   deckName String     @unique
   cardDeck CardDeck[]
+  game     Game[]
+}
+
+model Game {
+  id         Int      @id @default(autoincrement())
+  deckId     Int
+  gameName   String   @unique
+  minPlayers Int
+  maxPlayers Int
+  bigBlind   Decimal? @db.Decimal(10, 2)
+  smallBlind Decimal? @db.Decimal(10, 2)
+  deck       Deck     @relation(fields: [deckId], references: [id])
 }
