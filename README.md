@@ -29,7 +29,7 @@ In the root directory:
 
 5. Run the hot reload TypeScript compiler.
 
-`yarn run tsc-watch`
+- `yarn run tsc-watch`
 
 6. On a separate terminal, concurrently run the server.
 

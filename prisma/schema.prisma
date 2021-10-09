@@ -30,6 +30,7 @@ model Card {
   suit     Suit       @relation(fields: [suitId], references: [id])
   rank     Rank       @relation(fields: [rankId], references: [id])
   cardDeck CardDeck[]
+  action Action[]
 }
 
 model CardDeck {
@@ -45,15 +46,102 @@ model Deck {
   deckName String     @unique
   cardDeck CardDeck[]
   game     Game[]
+  match Match[]
 }
 
 model Game {
-  id         Int      @id @default(autoincrement())
-  deckId     Int
-  gameName   String   @unique
-  minPlayers Int
-  maxPlayers Int
-  bigBlind   Decimal? @db.Decimal(10, 2)
-  smallBlind Decimal? @db.Decimal(10, 2)
-  deck       Deck     @relation(fields: [deckId], references: [id])
+  id          Int           @id @default(autoincrement())
+  deckId      Int
+  gameName    String        @unique
+  minPlayers  Int
+  maxPlayers  Int
+  bigBlind    Decimal?      @db.Decimal(10, 2)
+  smallBlind  Decimal?      @db.Decimal(10, 2)
+  deck        Deck          @relation(fields: [deckId], references: [id])
+  playerScore PlayerScore[]
+  match Match[]
+}
+
+model PlayerScore {
+  id       Int    @id @default(autoincrement())
+  playerId Int
+  gameId   Int
+  player   Player @relation(fields: [playerId], references: [id])
+  game     Game   @relation(fields: [gameId], references: [id])
+}
+
+model Player {
+  id          Int           @id @default(autoincrement())
+  userId      String        @unique @default(uuid())
+  userName    String        @unique
+  password    String?
+  email       String?       @unique
+  nickName    String
+  playerScore PlayerScore[]
+  participant Participant[]
+}
+
+model Participant {
+  id Int @id @default(autoincrement())
+  matchId Int
+  playerId Int
+  score Decimal 
+  playerOrder Int
+  player Player @relation(fields: [playerId], references: [id])
+  action Action[]
+  dealOrder DealOrder[]
+}
+
+model Match {
+  id Int @id @default(autoincrement())
+  gameId Int
+  deckId Int
+  startTime DateTime
+  endTime DateTime?
+  numOfPlayers Int
+  victoryCondition Json?
+  matchResult Json?
+  game Game @relation(fields: [gameId], references: [id])
+  deck Deck @relation(fields: [deckId], references: [id])
+  deal Deal[]
+}
+
+model ActionType {
+  id Int @id @default(autoincrement())
+  actionName String
+  action Action[]
+}
+
+model Action {
+  id Int @id @default(autoincrement())
+  dealId Int
+  cardId Int?
+  participantId Int?
+  actionTypeId Int
+  actionOrder Int
+  actionNotation String
+  card Card? @relation(fields: [cardId], references: [id])
+  participant Participant? @relation(fields: [participantId], references: [id])
+  actionType ActionType @relation(fields: [actionTypeId], references: [id])
+}
+
+model Deal {
+  id Int @id @default(autoincrement())
+  matchId Int 
+  startTime DateTime
+  endTime DateTime?
+  moveTimeLimit Decimal?
+  dealResult Json?
+  match Match @relation(fields: [matchId], references: [id])
+  dealOrder DealOrder[]
+}
+
+model DealOrder {
+  id Int @id @default(autoincrement())
+  participantId Int
+  dealId Int
+  dealResult Json?
+  score Decimal?
+  participant Participant @relation(fields: [participantId], references: [id])
+  deal Deal @relation(fields: [dealId], references: [id])
 }
