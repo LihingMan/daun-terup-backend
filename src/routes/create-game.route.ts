@@ -10,5 +10,8 @@ CreateGameRouter.post(
   "/create-game",
   wrapHandler(async (req: Request, res: Response) => {
     logger.info("Creating game");
+    console.log(req);
   })
 );
+
+export default CreateGameRouter;
