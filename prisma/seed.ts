@@ -114,7 +114,7 @@ async function cardSetup() {
 async function gameSetup() {
   console.log("Creating the blackjack game");
   const blackjack: IGame = {
-    gameName: "Blackjack",
+    gameName: "blackjack",
     deckId: 1,
     minPlayers: 2,
     maxPlayers: 7,
@@ -125,7 +125,7 @@ async function gameSetup() {
 
   console.log("Creating the poker game");
   const poker: IGame = {
-    gameName: "Poker",
+    gameName: "poker",
     deckId: 1,
     minPlayers: 2,
     maxPlayers: 10,
@@ -138,7 +138,7 @@ async function gameSetup() {
 
   console.log("Creating the dai di game");
   const daidi: IGame = {
-    gameName: "Dai-Di",
+    gameName: "daidi",
     deckId: 1,
     minPlayers: 4,
     maxPlayers: 4,

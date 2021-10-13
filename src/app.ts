@@ -15,14 +15,11 @@ import cors from "cors";
 import http from "http";
 import _ from "lodash";
 import cookieParser from "cookie-parser";
-import CreateGameRouter from "@src/routes/create-game.route";
+import CreateGameRouter from "@src/modules/gameroom/create-game.route";
 
 const app = express();
 // Enable CORS
 app.use(cors());
-
-// Initiate socket io server.
-const server = http.createServer(app);
 
 // Request Body
 app.use(express.urlencoded({ extended: false }));
@@ -33,8 +30,19 @@ app.use(express.json());
 app.use(cookieParser());
 
 // -- add routes here
-app.use("create-game", CreateGameRouter);
+app.use("/create-game", CreateGameRouter);
 // -- routes end
+
+// endpoint sanity
+app.get("/health", (req, res) => {
+  const data = {
+    uptime: process.uptime(),
+    message: "Ok",
+    date: new Date(),
+  };
+
+  res.status(200).send(data);
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
