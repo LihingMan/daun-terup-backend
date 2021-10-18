@@ -59,7 +59,7 @@ CreateGameRouter.post(
     });
 
     return res.status(200).json({
-      createGame: "done",
+      roomId: roomId,
     });
   })
 );
