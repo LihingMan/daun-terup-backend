@@ -60,6 +60,7 @@ CreateGameRouter.post(
 
     return res.status(200).json({
       roomId: roomId,
+      userId: user.userId,
     });
   })
 );

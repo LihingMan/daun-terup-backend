@@ -73,7 +73,7 @@ model PlayerScore {
 model Player {
   id          Int           @id @default(autoincrement())
   userId      String        @unique @default(uuid())
-  userName    String?        @unique
+  userName    String?       @unique
   password    String?
   email       String?       @unique
   nickName    String
@@ -85,7 +85,7 @@ model Participant {
   id          Int         @id @default(autoincrement())
   matchId     Int
   playerId    Int
-  score       Decimal @db.Decimal(10, 2)
+  score       Decimal     @db.Decimal(10, 2)
   playerOrder Int
   player      Player      @relation(fields: [playerId], references: [id])
   action      Action[]
@@ -131,7 +131,7 @@ model Deal {
   matchId       Int
   startTime     DateTime
   endTime       DateTime?
-  moveTimeLimit Decimal? @db.Decimal(10, 2)
+  moveTimeLimit Decimal?    @db.Decimal(10, 2)
   dealResult    Json?
   match         Match       @relation(fields: [matchId], references: [id])
   dealOrder     DealOrder[]
@@ -142,7 +142,7 @@ model DealOrder {
   participantId Int
   dealId        Int
   dealResult    Json?
-  score         Decimal? @db.Decimal(10, 2)
+  score         Decimal?    @db.Decimal(10, 2)
   participant   Participant @relation(fields: [participantId], references: [id])
   deal          Deal        @relation(fields: [dealId], references: [id])
 }
