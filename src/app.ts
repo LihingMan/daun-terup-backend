@@ -16,6 +16,7 @@ import http from "http";
 import _ from "lodash";
 import cookieParser from "cookie-parser";
 import CreateGameRouter from "@src/modules/gameroom/create-game.route";
+import CardDealingRouter from "./modules/card/card-dealing.route";
 
 const app = express();
 // Enable CORS
@@ -31,6 +32,7 @@ app.use(cookieParser());
 
 // -- add routes here
 app.use("/create-game", CreateGameRouter);
+app.use("/dealing-cards", CardDealingRouter);
 // -- routes end
 
 // endpoint sanity
